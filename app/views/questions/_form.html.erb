@@ -1,0 +1,53 @@
+<%= form_for(@question) do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+
+  <div class="field">
+    <%= f.label :question_type %>
+    <%= f.select :question_type, Question::QUESTION_TYPES, :onChange => "" %><br />
+    </div>
+  
+  
+  <div id="question", class="field">
+    <%= f.label :question_text %>
+    <%= f.text_field :question_text %><br />
+  </div>
+ 
+  <div id="option", class="field">
+  	<%= f.label "A" %>
+  	<%= f.text_field :answer_a %><br />
+  	<%= f.label "B" %>
+  	<%= f.text_field :answer_b %><br />
+  	<%= f.label "C" %>
+  	<%= f.text_field :answer_c %><br />
+  	<%= f.label "D" %>
+  	<%= f.text_field :answer_d %><br />
+  </div>
+  <div id="answer", class="field">
+  	<%= f.label "Correct Answer:" %><br />
+    <%= f.radio_button :correct_answer, 1, :checked => true %>
+    <%= f.label "A" %>
+    <%= f.radio_button :correct_answer, 2 %>
+    <%= f.label "B" %>
+    <%= f.radio_button :correct_answer, 3 %>
+    <%= f.label "C" %>
+    <%= f.radio_button :correct_answer, 4 %>
+    <%= f.label "D" %>
+  <br />
+  </div>
+ 
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

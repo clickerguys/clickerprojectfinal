@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clicker Web Application</title>
+  <%= stylesheet_link_tag :application %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "questions" %>
+  <%= yield :javascript_includes %>
+  <%= csrf_meta_tag %>
+</head>
+<body class='<%= controller.controller_name %>'>
+	
+	
+	<table style="width:100%;border:0;" border="0">
+	<tr>
+	<td colspan="2" style="background-color:powderblue;"<h1>Clicker Web Application</h1>
+		</td>
+		</tr>
+		<tr>
+		<td style="background-color:springgreen;width:30%;text-align:top;">
+
+<% if session[:user_id] %>
+	<p>Welcome, <%= User.find(session[:user_id]).name.capitalize %></p>
+	<%= button_to 'Logout', logout_path, method: :delete, :class => "button" %>
+<% end %>
+
+<td style="background-color:#eeeeee;height:200px;width:70%;text-align:top;">
+<%= yield %></td>
+</tr>
+<tr>
+
+</tr>
+</table>
+</body>
+</html>
